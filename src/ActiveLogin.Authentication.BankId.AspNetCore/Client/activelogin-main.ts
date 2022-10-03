@@ -212,7 +212,7 @@ function activeloginInit(configuration: IBankIdUiScriptConfiguration, initState:
         const currentTime = new Date();
         const timeSinceLastRefresh = currentTime.getTime() - qrLastRefreshTimestamp.getTime();
         if (timeSinceLastRefresh < configuration.qrCodeRefreshIntervalMs) {
-            qrRefreshTimeoutId = setTimeout(() => {
+            qrRefreshTimeoutId = window.setTimeout(() => {
                     refreshQrCode(requestVerificationToken, qrStartState);
             }, configuration.qrCodeRefreshIntervalMs);
             return;
@@ -228,7 +228,7 @@ function activeloginInit(configuration: IBankIdUiScriptConfiguration, initState:
                 if (!!data.qrCodeAsBase64) {
                     qrLastRefreshTimestamp = new Date();
                     setQrCode(data.qrCodeAsBase64);
-                    qrRefreshTimeoutId = setTimeout(() => {
+                    qrRefreshTimeoutId = window.setTimeout(() => {
                             refreshQrCode(requestVerificationToken, qrStartState);
                     }, configuration.qrCodeRefreshIntervalMs);
                 }
